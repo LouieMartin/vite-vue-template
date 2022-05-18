@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MoonStarsIcon, Error404Icon, FriendsIcon, HomeIcon, SunIcon } from 'vue-tabler-icons';
+import { ArrowLeftIcon, MoonStarsIcon, Error404Icon, FriendsIcon, HomeIcon, SunIcon } from 'vue-tabler-icons';
 import { toggleColorScheme, isDark } from './theme';
 </script>
 
@@ -11,9 +11,12 @@ import { toggleColorScheme, isDark } from './theme';
           <div class="flex items-center justify-between h-full w-full">
             <div class="flex">
               <div class="dark:text-white pr-1">
+                <button class="pr-1" @click="$router.back()" v-if="$route.name !== 'Home'">
+                  <ArrowLeftIcon />
+                </button>
                 <HomeIcon v-if="$route.name === 'Home'" />
                 <FriendsIcon v-else-if="$route.name === 'Welcome'" />
-                <Error404Icon v-else />
+                <Error404Icon v-else-if="$route.name === 'NotFound'" />
               </div>
               <span class="text-md dark:text-white font-bold">{{ $route.name ? $route.name : 'Not Found' }}</span>
             </div>
